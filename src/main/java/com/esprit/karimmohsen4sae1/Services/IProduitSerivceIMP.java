@@ -7,9 +7,11 @@ import com.esprit.karimmohsen4sae1.Repositories.ProduitRepository;
 import com.esprit.karimmohsen4sae1.Repositories.RayonRepository;
 import com.esprit.karimmohsen4sae1.Repositories.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class IProduitSerivceIMP implements ProduitService{
 
     @Autowired
@@ -51,6 +53,7 @@ public class IProduitSerivceIMP implements ProduitService{
         Stock stock = stockRepository.findById(idStock).orElse(null);
         if (produit!=null && stock!=null){
             produit.setStock(stock);
+            stockRepository.save(stock);
         }
     }
 }
