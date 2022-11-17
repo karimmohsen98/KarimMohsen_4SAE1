@@ -40,7 +40,10 @@ public class IFactureSerivceIMP implements FactureService{
 
     @Override
     public void cancelFacture(Long id) {
-        factureRepository.deleteById(id);
+        Facture facture = factureRepository.findById(id).orElse(null);
+        if (facture !=null){
+            facture.setActive(false);
+        }
 
     }
 
