@@ -23,4 +23,20 @@ public class FactureControlleur {
     public List<Facture> retrieveFacturesForClient(Long idClient){
         return factureService.getFacturesByClient(idClient);
     }
+
+    @PostMapping()
+    public void cancelFacture(Long id)
+    {
+        factureService.cancelFacture(id);
+    }
+
+    @GetMapping("/getallfactures")
+    public List<Facture> retrieveAllFactures(){
+        return factureService.retrieveAllFactures();
+    }
+
+    @GetMapping("{id}")
+    public Facture retrieveFacture(@PathVariable Long id){
+        return factureService.retrieveFacture(id);
+    }
 }

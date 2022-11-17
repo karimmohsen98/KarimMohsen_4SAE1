@@ -6,6 +6,7 @@ import com.esprit.karimmohsen4sae1.Repositories.ClientRepository;
 import com.esprit.karimmohsen4sae1.Repositories.FactureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,11 +39,14 @@ public class IFactureSerivceIMP implements FactureService{
         return factureRepository.findAll();
     }
 
+
     @Override
+    @Transactional
     public void cancelFacture(Long id) {
         Facture facture = factureRepository.findById(id).orElse(null);
         if (facture !=null){
             facture.setActive(false);
+            //System.out.println("Success");
         }
 
     }
@@ -60,7 +64,6 @@ public class IFactureSerivceIMP implements FactureService{
         if (client != null)
         {
            return client.getFactureListClient();
-
         }
 
         return null;
